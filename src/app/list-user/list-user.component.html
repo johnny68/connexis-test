@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="card-body table-responsive">
+      <table class="table table-hover table-striped sortable">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Address</th>
+            <th>User Mobile</th>
+            <th>User State</th>
+            <th>User City</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let user of users;"  >
+            <tr >
+              <td>{{user.user_name}}</td>
+              <td>{{user.user_email}}</td>
+              <td>{{user.user_address}}</td>
+              <td>{{user.user_mobile_number}}</td>
+              <td>{{user.user_state}}</td>
+              <td>{{user.user_city}}</td>
+              <td> <button (click)="gotoUser(user)">EDIT</button></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>

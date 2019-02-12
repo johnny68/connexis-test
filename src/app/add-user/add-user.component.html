@@ -1,0 +1,64 @@
+<div class="row" [formGroup]="add_form">
+  <div class="col-lg-6">
+    <div class="form-group">
+      <h4>Add User Details</h4>
+      <label>Name</label>
+      <input formControlName="username" [(ngModel)]="username" name="name" type="text" class="form-control" required>
+      <span class="text-danger" *ngIf="add_form.controls['username'].hasError('required') && (add_form.controls['username'].dirty || add_form.controls['username'].touched)">
+        This field is required
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input formControlName="useremail" [(ngModel)]="useremail" type="email" class="form-control" required>
+      <span class="text-danger" *ngIf="add_form.controls['useremail'].hasError('required') && (add_form.controls['useremail'].dirty || add_form.controls['useremail'].touched)">
+        This field is required
+      </span>
+      <span class="text-danger" *ngIf="add_form.controls['useremail'].hasError('pattern') && (add_form.controls['useremail'].dirty || add_form.controls['useremail'].touched)">
+        Please enter valid email address
+      </span>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <input formControlName="address" [(ngModel)]="address" type="text" class="form-control" placeholder="Enter only Street Address"
+        required>
+      <span class="text-danger" *ngIf="add_form.controls['address'].hasError('required') && (add_form.controls['address'].dirty || add_form.controls['address'].touched)">
+        This field is required
+      </span>
+    </div>
+    <div class="form-group">
+      <label>City</label>
+      <select formControlName="city" #selected [(ngModel)]="city" (change)="citySelectedValue(value)" class="form-control"
+        required>
+        <option *ngFor="let city of cities" [value]="city.id ">{{city.name}}</option>
+      </select>
+      <span class="text-danger" *ngIf="add_form.controls['city'].hasError('required') && (add_form.controls['city'].dirty || add_form.controls['city'].touched)">
+        This field is required
+      </span>
+    </div>
+    <div class="form-group" *ngIf="checker">
+      <label>Selected City</label>
+      <input formControlName="cityselected" type="text" [ngModel]="city.name" name="cityselected" class="form-control" disabled>
+    </div>
+    <div class="form-group" *ngIf="checker">
+        <label>State</label>
+        <input formControlName="state" type="text" [ngModel]="city.state" name="state" class="form-control" disabled>
+      </div>
+      <div class="form-group" *ngIf="checker == false">
+          <label>State</label>
+          <input formControlName="state" type="text" [ngModel]="city.state" name="state" class="form-control" disabled>
+        </div>
+
+    <div class="form-group" >
+      <label>Mobile Number</label>
+      <input formControlName="mobileNumber" [(ngModel)]="mobileNumber" type="number" class="form-control" placeholder="Enter only Mobile Number">
+      <span class="text-danger" *ngIf="add_form.controls['mobileNumber'].hasError('required') && (add_form.controls['mobileNumber'].dirty || add_form.controls['mobileNumber'].touched)">
+        This field is required
+      </span>
+    </div>
+    <div class="text-right">
+      <button (click)="onSave()" style="margin-right: 20px;" [disabled]="add_form.invalid" class="btn btn-success">Save
+        & Next</button>
+    </div>
+  </div>
+</div>
